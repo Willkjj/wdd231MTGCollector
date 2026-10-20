@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101611">
+  <title>MTG Collector — Your collection, your next deck</title>
+  <link rel="preconnect" href="https://api.scryfall.com">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="MTG Collector home">
+        <span class="brand-mark">✦</span>
+        <span><strong>MTG</strong><small>COLLECTOR</small></span>
+      </a>
+      <div class="workspace-menu">
+        <button
+          class="workspace-toggle"
+          id="workspace-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          <span>WORKSPACE</span>
+          <span class="workspace-chevron" aria-hidden="true">▾</span>
+        </button>
+        <nav class="main-nav" id="main-nav" aria-label="Workspace navigation" hidden>
+          <button class="nav-item" data-view="search"><span>⌕</span> Discover cards</button>
+          <button class="nav-item" data-view="library"><span>▤</span> My library <b id="nav-library-count">0</b></button>
+          <button class="nav-item" data-view="decks"><span>▦</span> Deck builder <b id="nav-deck-count">0</b></button>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="mana-orbit"><span>●</span><span>◆</span><span>▲</span><span>✦</span><span>☼</span></div>
+        <p class="sidebar-note">Every card has a story.<br>Keep yours together.</p>
+        <span class="api-note"><i></i> Powered by Scryfall</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">✦</span><strong>MTG COLLECTOR</strong></div>
+        <div class="breadcrumb">COLLECTION MANAGEMENT <span>/</span> <b id="breadcrumb-current">DISCOVER</b></div>
+        <div class="topbar-right"><span class="status-dot"></span><span>Saved on this device</span><div class="avatar">M</div></div>
+      </header>
+
+      <section class="view active" id="view-search">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> THE MULTIVERSE, ORGANIZED</div>
+            <h1>Your collection.<br><em>Your next legend.</em></h1>
+            <p>Find any printed card, track what you own, and turn your collection into something legendary.</p>
+            <div class="hero-stats">
+              <div><strong id="hero-card-count">0</strong><span>CARDS OWNED</span></div>
+              <div class="stat-divider"></div>
+              <div><strong id="hero-unique-count">0</strong><span>UNIQUE CARDS</span></div>
+              <div class="stat-divider"></div>
+              <div><strong id="hero-deck-count">0</strong><span>DECKS BUILT</span></div>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-ring ring-one"></div><div class="art-ring ring-two"></div>
+            <div class="art-sigil">✦</div>
+            <div class="art-caption">YOUR OWN<br><b>PLANESWALKER'S ARCHIVE</b></div>
+          </div>
+        </div>
+
+        <div class="section-heading search-heading">
+          <div><div class="eyebrow">CARD DATABASE</div><h2>Discover cards <span class="heading-count">/ ALL PRINTED CARDS</span></h2></div>
+        </div>
+        <form id="search-form" class="search-bar">
+          <span class="search-icon">⌕</span>
+          <input id="card-query" type="search" placeholder="Search by card name, type, set, or rules text…" autocomplete="off" aria-label="Search all Magic cards">
+          <button class="btn btn-primary" type="submit">Search cards <span>↗</span></button>
+        </form>
+        <div class="filter-row">
+          <label>COLOR
+            <select id="search-color"><option value="">All colors</option><option value="W">White</option><option value="U">Blue</option><option value="B">Black</option><option value="R">Red</option><option value="G">Green</option><option value="C">Colorless</option></select>
+          </label>
+          <label>RARITY
+            <select id="search-rarity"><option value="">All rarities</option><option value="common">Common</option><option value="uncommon">Uncommon</option><option value="rare">Rare</option><option value="mythic">Mythic</option></select>
+          </label>
+          <label>TYPE
+            <select id="search-type"><option value="">All types</option><option value="creature">Creature</option><option value="instant">Instant</option><option value="sorcery">Sorcery</option><option value="artifact">Artifact</option><option value="enchantment">Enchantment</option><option value="planeswalker">Planeswalker</option><option value="land">Land</option></select>
+          </label>
+          <span class="filter-hint">Search powered by Scryfall</span>
+        </div>
+        <div id="search-message" class="message" role="status">Loading featured cards…</div>
+        <div id="search-results" class="card-grid"></div>
+      </section>
+
+      <section class="view" id="view-library">
+        <div class="page-intro">
+          <div><div class="eyebrow">YOUR PERSONAL ARCHIVE</div><h1>My <em>library.</em></h1><p>Every card you own, all in one place.</p></div>
+          <button class="btn btn-primary" id="browse-from-library">＋ Add cards</button>
+        </div>
+        <div class="library-summary">
+          <div><span class="summary-icon">▤</span><div><strong id="library-total">0</strong><small>TOTAL CARDS</small></div></div>
+          <div><span class="summary-icon">✦</span><div><strong id="library-unique">0</strong><small>UNIQUE PRINTINGS</small></div></div>
+          <div><span class="summary-icon">▧</span><div><strong id="library-sets">0</strong><small>SETS REPRESENTED</small></div></div>
+        </div>
+        <div class="library-controls">
+          <div class="mini-search"><span>⌕</span><input id="library-query" type="search" placeholder="Filter your library…"></div>
+          <select id="library-color" aria-label="Filter library by color"><option value="">All colors</option><option value="W">White</option><option value="U">Blue</option><option value="B">Black</option><option value="R">Red</option><option value="G">Green</option><option value="C">Colorless</option></select>
+          <select id="library-sort" aria-label="Sort library"><option value="name">Name A–Z</option><option value="quantity">Quantity: high to low</option><option value="set">Set name</option></select>
+        </div>
+        <div id="library-message" class="message">Your library is waiting for its first card. Search the database to get started.</div>
+        <div id="library-grid" class="card-grid"></div>
+      </section>
+
+      <section class="view" id="view-decks">
+        <div class="page-intro">
+          <div><div class="eyebrow">FROM COLLECTION TO CREATION</div><h1>Deck <em>builder.</em></h1><p>Build sub-collections from the cards you already own.</p></div>
+          <button class="btn btn-primary" id="new-deck-button">＋ Create a deck</button>
+        </div>
+        <div class="deck-callout"><div class="deck-callout-icon">✦</div><div><strong>Your cards. Your strategy.</strong><p>Decks are saved locally and draw from your library. Add cards to your collection first, then start brewing.</p></div></div>
+        <div id="decks-list" class="decks-list"></div>
+      </section>
+
+      <footer><span>MTG COLLECTOR</span><span>Card data provided by Scryfall · Not affiliated with Wizards of the Coast</span></footer>
+    </main>
+  </div>
+
+  <dialog id="deck-dialog" class="modal">
+    <form id="deck-form" method="dialog">
+      <div class="modal-top"><div><div class="eyebrow">NEW SUB-COLLECTION</div><h2>Create a deck</h2></div><button type="button" class="icon-button" id="close-deck-dialog" aria-label="Close">×</button></div>
+      <label class="field-label" for="deck-name">Deck name</label>
+      <input id="deck-name" class="text-field" maxlength="60" required placeholder="e.g. Selesnya Tokens">
+      <label class="field-label" for="deck-format">Format</label>
+      <select id="deck-format" class="text-field"><option>Casual</option><option>Commander</option><option>Standard</option><option>Modern</option><option>Legacy</option><option>Pioneer</option><option>Pauper</option></select>
+      <label class="field-label" for="deck-description">Notes <span>(optional)</span></label>
+      <textarea id="deck-description" class="text-field" rows="3" maxlength="240" placeholder="Theme, strategy, cards to look for…"></textarea>
+      <div class="modal-actions"><button type="button" class="btn btn-quiet" id="cancel-deck">Cancel</button><button type="submit" class="btn btn-primary">Create deck ↗</button></div>
+    </form>
+  </dialog>
+  <dialog id="delete-deck-dialog" class="modal confirmation-modal" aria-labelledby="delete-deck-title" aria-describedby="delete-deck-message">
+    <div class="modal-top">
+      <div>
+        <div class="eyebrow">REMOVE SUB-COLLECTION</div>
+        <h2 id="delete-deck-title">Delete this deck?</h2>
+      </div>
+      <button type="button" class="icon-button" id="close-delete-deck-dialog" aria-label="Close">×</button>
+    </div>
+    <p id="delete-deck-message" class="confirmation-message">
+      This deck will be permanently removed. Its cards will remain in your library.
+    </p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-quiet" id="cancel-delete-deck">Keep deck</button>
+      <button type="button" class="btn btn-danger" id="confirm-delete-deck">Delete deck</button>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
