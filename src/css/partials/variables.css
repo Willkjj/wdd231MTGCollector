@@ -10,5 +10,8 @@
   --green-dark: #7d9d4c;
   --gold: #d9bd78;
   --red: #d98779;
-  --radius: 14px
+  --radius: 14px;
+  --light-border: #263128;
+  --dark-border: #30402f;
+  --bg-1: #172119;
 }
