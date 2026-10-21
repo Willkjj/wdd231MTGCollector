@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+:root {
+  --bg: #101611;
+  --panel: #172019;
+  --panel-2: #1c2820;
+  --line: #2b392d;
+  --text: #f0f1e8;
+  --muted: #9da99a;
+  --green: #b6d87b;
+  --green-dark: #7d9d4c;
+  --gold: #d9bd78;
+  --red: #d98779;
+  --radius: 14px
+}
