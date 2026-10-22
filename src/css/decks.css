@@ -14,7 +14,7 @@ body {
 
 aside {
 
-    background-color: var(--bg);
+    background-color: #0c110d;
     border-bottom: solid 1px var(--light-border);
     height: 50px;
     display: flex;
@@ -39,7 +39,23 @@ aside {
     }
 }
 
+.top-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3% 0;
 
+    h1 {
+        color: var(--text);
+        font-family: 'Playfair Display',serif;
+    }
+
+    p {
+        color: #aab6a7;
+        font-family: 'DM Sans',sans-serif;
+        font-size: 14px;
+    }
+}
 
 /* Deck container */
 #decks-list {
@@ -132,6 +148,7 @@ aside {
         height: 100vh;
         border-right: 1px solid var(--light-border);
         padding: 0;
+        top: 0px;
 
         a {
             width: 100%;
@@ -140,6 +157,14 @@ aside {
         }
     }
 
+    .top-box {
+        align-items: flex-start;
+        margin: 3% 0% 2% 5%;
+
+        h1 {
+            font-size: 44px;
+        }
+    }
 
     /* deck container */
     #decks-list {
