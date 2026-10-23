@@ -1,43 +1,6 @@
-* {
-    padding: 0;
-    margin: 0;
-
-}
-
-/* global styles */
-body {
-    background-color: var(--bg);
-}
+@import "./style.css";
 
 
-/* Sidebar */
-
-aside {
-
-    background-color: #0c110d;
-    border-bottom: solid 1px var(--light-border);
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 7%;
-
-    a {
-        height: 50px;
-        width: 100%;
-        text-decoration: none;
-        color: var(--text);
-        line-height: 50px;
-        transition: .2s;
-        text-align: center;
-        
-    }
-
-    a:hover {
-        background-color: #1d2b1e;
-        color: var(--green);
-    }
-}
 
 .top-box {
     display: flex;
@@ -171,11 +134,10 @@ aside {
         display: flex;
         flex-wrap: wrap;
         /* margin: 2% 2% 0% 10%; */
-        width: 100%;
     }
 
     .deck {
-        height: 250px;
+        height: 200px;
         width: 40%;
         margin: 1%;
     }
