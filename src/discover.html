@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101611">
+    <title>Discover | MTG Collector</title>
+    <link rel="stylesheet" href="css/discover.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <a class="brand" href="discover.html" aria-label="MTG Collector home">
+            <span class="brand-mark">✦</span>
+            <span><strong>MTG</strong><small>COLLECTOR</small></span>
+        </a>
+        <div class="workspace-menu">
+            <p class="sidebar-label">WORKSPACE</p>
+            <nav class="main-nav" aria-label="Workspace navigation">
+                <a class="nav-item active" href="discover.html" aria-current="page"><span aria-hidden="true">⌕</span> Discover cards</a>
+                <a class="nav-item" href="library.html"><span aria-hidden="true">▤</span> My library</a>
+                <a class="nav-item" href="decks.html"><span aria-hidden="true">▦</span> Deck builder</a>
+            </nav>
+        </div>
+        <div class="sidebar-bottom">
+            <div class="mana-orbit" aria-hidden="true"><span>●</span><span>◆</span><span>▲</span><span>✦</span><span>☼</span></div>
+            <p class="sidebar-note">Every card has a story.<br>Keep yours together.</p>
+            <span class="api-note"><i></i> Powered by Scryfall</span>
+        </div>
+    </aside>
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="eyebrow-line"></span> THE MULTIVERSE, ORGANIZED</p>
+                <h1>Your collection.<br><em>Your next legend.</em></h1>
+                <p class="hero-description">Find any printed card, track what you own, and turn your collection into something legendary.</p>
+                <div class="hero-stats" aria-label="Collection overview">
+                    <div>
+                        <strong id="hero-card-count">0</strong>
+                        <span>CARDS OWNED</span>
+                    </div>
+                    <span class="stat-divider" aria-hidden="true"></span>
+                    <div>
+                        <strong id="hero-unique-count">0</strong>
+                        <span>UNIQUE CARDS</span>
+                    </div>
+                    <span class="stat-divider" aria-hidden="true"></span>
+                    <div>
+                        <strong id="hero-deck-count">0</strong>
+                        <span>DECKS BUILT</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+                <div class="art-ring ring-one"></div>
+                <div class="art-ring ring-two"></div>
+                <div class="art-sigil">✦</div>
+                <p class="art-caption">YOUR OWN<br><strong>PLANESWALKER'S ARCHIVE</strong></p>
+            </div>
+        </section>
+
+        <section class="discover-section" aria-labelledby="discover-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">CARD DATABASE</p>
+                    <h2 id="discover-heading">Discover cards <span>/ ALL PRINTED CARDS</span></h2>
+                </div>
+            </div>
+            <form id="search-form" class="search-bar">
+                <label class="visually-hidden" for="card-query">Search all Magic cards</label>
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="card-query" name="q" type="search" placeholder="Search by card name, type, set, or rules text…" autocomplete="off">
+                <button type="submit">Search cards <span aria-hidden="true">↗</span></button>
+            </form>
+            <div class="filter-row">
+                <label for="search-color">COLOR
+                    <select id="search-color" name="color">
+                        <option value="">All colors</option>
+                        <option value="W">White</option>
+                        <option value="U">Blue</option>
+                        <option value="B">Black</option>
+                        <option value="R">Red</option>
+                        <option value="G">Green</option>
+                        <option value="C">Colorless</option>
+                    </select>
+                </label>
+                <label for="search-rarity">RARITY
+                    <select id="search-rarity" name="rarity">
+                        <option value="">All rarities</option>
+                        <option value="common">Common</option>
+                        <option value="uncommon">Uncommon</option>
+                        <option value="rare">Rare</option>
+                        <option value="mythic">Mythic</option>
+                    </select>
+                </label>
+                <label for="search-type">TYPE
+                    <select id="search-type" name="type">
+                        <option value="">All types</option>
+                        <option value="creature">Creature</option>
+                        <option value="instant">Instant</option>
+                        <option value="sorcery">Sorcery</option>
+                        <option value="artifact">Artifact</option>
+                        <option value="enchantment">Enchantment</option>
+                        <option value="planeswalker">Planeswalker</option>
+                        <option value="land">Land</option>
+                    </select>
+                </label>
+                <span class="filter-hint">Search powered by Scryfall</span>
+            </div>
+            <p id="search-message" class="message" role="status">Search the card database to find your next favorite.</p>
+            <div id="search-results" class="card-grid" aria-live="polite"></div>
+        </section>
+
+        <footer>
+            <span>MTG COLLECTOR</span>
+            <span>Card data provided by Scryfall · Not affiliated with Wizards of the Coast</span>
+        </footer>
+    </main>
+</body>
+</html>

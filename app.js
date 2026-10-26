@@ -80,15 +80,6 @@ function getContext() {
   };
 }
 
-// Keep the Workspace menu's visibility and its accessible expanded state in sync.
-function setWorkspaceMenuOpen(isOpen, { restoreFocus = false } = {}) {
-  const toggle = $("workspace-toggle");
-  const menu = $("main-nav");
-  toggle.setAttribute("aria-expanded", String(isOpen));
-  menu.hidden = !isOpen;
-  if (restoreFocus) toggle.focus();
-}
-
 // Read the requested section from the URL, falling back to Discover if it is invalid.
 // Use the URL's view parameter to restore the user's current section.
 function readRoute() {
@@ -141,17 +132,8 @@ document.addEventListener("click", event => {
   const target = event.target;
   if (!(target instanceof Element)) return;
 
-  const workspaceToggle = target.closest("#workspace-toggle");
-  if (workspaceToggle) {
-    const isOpen = workspaceToggle.getAttribute("aria-expanded") === "true";
-    setWorkspaceMenuOpen(!isOpen);
-    return;
-  }
-  if (!target.closest(".workspace-menu")) setWorkspaceMenuOpen(false);
-
   const nav = target.closest("[data-view]");
   if (nav) {
-    setWorkspaceMenuOpen(false);
     switchView(nav.dataset.view);
   }
 
@@ -209,13 +191,6 @@ document.addEventListener("click", event => {
   }
 });
 
-// Let keyboard users dismiss the Workspace menu and return focus to its button.
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && $("workspace-toggle").getAttribute("aria-expanded") === "true") {
-    setWorkspaceMenuOpen(false, { restoreFocus: true });
-  }
-});
-
 // Search on submit; changing any search filter reruns the current query.
 $("search-form").addEventListener("submit", event => {
   event.preventDefault();
@@ -255,7 +230,6 @@ $("deck-form").addEventListener("submit", event =>
 
 // Restore the correct section when the user navigates with browser Back or Forward.
 window.addEventListener("popstate", () => {
-  setWorkspaceMenuOpen(false);
   const route = readRoute();
   switchView(route.view, { updateUrl: false });
 });

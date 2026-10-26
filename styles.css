@@ -109,54 +109,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   position: relative
 }
 
-.workspace-toggle {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px 12px;
-  border: 0;
-  background: transparent;
-  color: #718071;
-  font-family: 'DM Mono',monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .17em;
-  text-align: left
-}
-
-.workspace-toggle:hover,
-.workspace-toggle[aria-expanded="true"] {
-  color: var(--green)
-}
-
-.workspace-chevron {
-  font-size: 13px;
-  letter-spacing: 0;
-  transition: transform .2s
-}
-
-.workspace-toggle[aria-expanded="true"] .workspace-chevron {
-  transform: rotate(180deg)
-}
-
 .main-nav {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 5;
-  min-width: 100%;
-  padding: 8px;
-  border: 1px solid #344332;
-  border-radius: 10px;
-  background: #111912;
-  box-shadow: 0 12px 28px #0006;
   display: grid;
   gap: 7px
-}
-
-.main-nav[hidden] {
-  display: none
 }
 
 .nav-item {
@@ -1166,24 +1121,17 @@ footer span:first-child {
     display: none
   }
 
-  .workspace-toggle {
-    padding: 5px 4px;
-    font-size: 9px
-  }
-
   .main-nav {
-    position: static;
     width: 100%;
-    margin-top: 7px;
-    padding: 6px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
     gap: 4px
   }
 
   .nav-item {
-    white-space: nowrap;
-    padding: 10px 11px;
+    justify-content: center;
+    white-space: normal;
+    padding: 10px 8px;
     font-size: 11px;
     gap: 7px
   }

@@ -89,37 +89,6 @@
 }
 
 @media screen and (min-width: 600px){
-
-    /* global styles */
-    body {
-        display: flex;
-        flex-direction: row;
-    }
-    main {
-        width: 100%;
-    }
-
-    /* sidebar */
-    aside {
-        /* left: -10px; */
-        top: 20%;
-        position: sticky;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        width: 240px;
-        height: 100vh;
-        border-right: 1px solid var(--light-border);
-        padding: 0;
-        top: 0px;
-
-        a {
-            width: 100%;
-            border-radius: 14px;
-            margin-bottom: 2%;
-        }
-    }
-
     .top-box {
         align-items: flex-start;
         margin: 3% 0% 2% 5%;
