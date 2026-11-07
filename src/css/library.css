@@ -18,6 +18,17 @@
         font-size: 11px;
     }
 
+    input {
+        height: 35px;
+        /* width: 80%; */
+        border: 1px solid #354333;
+        background-color: #182219;
+        color: var(--text);
+        padding: 0% 5px;
+        margin: 0% 5px;
+        border-radius: 8px;
+    }
+
     button {
         height: 50px;
         width: 100px;
@@ -74,7 +85,7 @@
 
         .image-wrap {
             border: 1px solid #344332;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 8px 18px #0002;
             transition: transform .2s, border-color .2s;
