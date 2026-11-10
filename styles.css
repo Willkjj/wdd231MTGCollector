@@ -389,14 +389,15 @@ h1,h2,p {
 
 .ring-one {
   width: 250px;
-  height: 250px
+  height: 250px;
+  animation: ring-orbit-forward 36s linear infinite
 }
 
 .ring-two {
   width: 185px;
   height: 265px;
   border-color: #d4bd7855;
-  transform: rotate(38deg)
+  animation: ring-orbit-reverse 48s linear infinite
 }
 
 .art-sigil {
@@ -409,8 +410,39 @@ h1,h2,p {
   font-size: 80px;
   color: #d8e5bd;
   text-shadow: 0 0 35px #b6d87b88;
+  animation: sigil-glow 4s ease-in-out infinite;
   background: radial-gradient(circle,#51653a44,#162319 72%);
   box-shadow: 0 0 80px #9ac46a18
+}
+
+@keyframes ring-orbit-forward {
+  from {
+    transform: rotate(-25deg) scale(1)
+  }
+
+  to {
+    transform: rotate(335deg) scale(.96)
+  }
+}
+
+@keyframes ring-orbit-reverse {
+  from {
+    transform: rotate(38deg)
+  }
+
+  to {
+    transform: rotate(-322deg)
+  }
+}
+
+@keyframes sigil-glow {
+  0%,100% {
+    text-shadow: 0 0 28px #b6d87b70
+  }
+
+  50% {
+    text-shadow: 0 0 48px #b6d87bcc
+  }
 }
 
 .art-caption {
@@ -1043,6 +1075,26 @@ footer span:first-child {
   font-family: 'DM Mono',monospace;
   letter-spacing: .12em;
   color: #9ca997
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .ring-one,
+  .ring-two,
+  .art-sigil {
+    animation: none
+  }
+
+  .ring-one {
+    transform: rotate(-25deg)
+  }
+
+  .ring-two {
+    transform: rotate(38deg)
+  }
+
+  .art-sigil {
+    text-shadow: 0 0 35px #b6d87b88
+  }
 }
 
 @media(max-width:1250px) {
