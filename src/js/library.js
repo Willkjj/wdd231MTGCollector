@@ -1,5 +1,4 @@
 import { searchCardFuzzy } from "./api.js";
-
 let decks = []
 let cardList = []
 
@@ -60,6 +59,5 @@ async function renderAddCard(){
 
 function init(){
     renderAddCard()
-
 }
 init()
