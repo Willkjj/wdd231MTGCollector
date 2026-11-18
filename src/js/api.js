@@ -16,20 +16,21 @@ export async function getJson(url){
 
 export async function getRandom(){
     const card = await getJson("random")
-    console.log(card)
     
     return card
 }
 
 
 export async function searchAutoComplete(query) {
-  if (query.length() < 2) { return }
-  const card = await getJson("autocomplete?q=${query}")
+  if (query.length < 2) { return }
+  const string = query.replaceAll(" ", "+")
 
+  const cards = await getJson(`autocomplete?q=${string}`)
+  return cards
 }
 
 export async function searchCardFuzzy(query) {
-  const string = query.replace(" ", "+")
+  const string = query.replaceAll("// ", "").replaceAll("'", "").replaceAll(",", "").replaceAll(" ", "+")
 
   const card = await getJson(`named?fuzzy=${string}`)
   return card
