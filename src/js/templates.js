@@ -9,34 +9,16 @@ export function cardTemplate(card) {
     return `            
     <article class="card" id="${card.id}">
         <div class="image-wrap">
-            <img src="${card.card_faces[0]?.image_uris?.grid}" alt="${card.name}">
+            <img src="${img}" alt="${card.name}">
         </div>
         <p>${card.name}</p>
         <p class="set-marker">${card.set}<span class="card-id">${card.collector_number}</span></p>
         <div class="card-actions">
-            <button>-</button>
+            <button data-action="remove">-</button>
             <button class="owned">${card.quantity} Owned</button>
-            <button>+</button>
-            <button>x</button>
+            <button data-action="add">+</button>
+            <button data-action="delete">x</button>
         </div>
     </article>`
 
 }
-
-// export function cardTemplate(card) {
-//     return `            
-//     <article class="card" id="${card.id}">
-//         <div class="image-wrap">
-//             <img src="${card.image_uris.grid}" alt="${card.name}">
-//         </div>
-//         <p>${card.name}</p>
-//         <p class="set-marker">${card.set}<span class="card-id">${card.collector_number}</span></p>
-//         <div class="card-actions">
-//             <button>-</button>
-//             <button class="owned">${card.quantity} Owned</button>
-//             <button>+</button>
-//             <button>x</button>
-//         </div>
-//     </article>`
-
-// }

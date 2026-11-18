@@ -105,6 +105,46 @@ function renderAutoCompleteResultsClick() {
     })
 }
 
+function renderCardActions() {
+
+    const cardBox = document.querySelector(".card-box")
+
+    cardBox.addEventListener("click", (e) => {
+        const button = e.target.closest("button")
+        if (!button) { return }
+        
+        const article = button.closest("article.card")
+        const cardID = article.id
+        const card = cardList.find((item) => item.id == cardID)
+
+        if (!card) { return }
+
+        switch (button.dataset.action){
+            case "add" :
+                card.quantity +=1
+                break
+
+            case "remove" :
+                card.quantity -= 1
+
+                if (card.quantity <= 0){
+                    cardList = cardList.filter((item) => item.id != cardID)
+                }
+            
+        
+                break
+            case "delete" :
+                cardList = cardList.filter((item) => item.id != cardID)
+                
+                break
+        }
+        
+        renderCard()
+        saveCardsLocalStorage()
+
+    })
+}
+
 
 function init(){
     getCardsLocalStorage()
@@ -112,6 +152,6 @@ function init(){
     renderCard()
     cardAutoComplete()
     renderAutoCompleteResultsClick()
-    
+    renderCardActions()   
 }
 init()
